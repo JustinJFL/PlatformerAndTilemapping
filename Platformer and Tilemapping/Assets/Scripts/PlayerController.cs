@@ -11,15 +11,25 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public float jumpForce;
     private float scoreCount;
+    private float livesCount;
+
     public Text scoreText;
     public Text winText;
+    public Text livesText;
 
+    public Transform playerLocation;
+    private bool lvl2;
+
+    public AudioSource victorySound;
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         scoreCount = 0;
+        livesCount = 3;
         scoreText.text = "Score: " + scoreCount.ToString();
+        livesText.text = "Lives: " + livesCount.ToString();
         winText.text = "";
+        lvl2 = false;
     }
 
     void FixedUpdate()
@@ -35,6 +45,7 @@ public class PlayerController : MonoBehaviour
         {
          Application.Quit();
         }
+
     }
 
     void OnCollisionStay2D(Collision2D Collision)
@@ -54,20 +65,86 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.tag == "Coin")
         {
-            SetScore();
             Destroy(other.gameObject);
-            
+            SetScore();
         }    
+
+        if(other.gameObject.tag == "Enemy")
+        {
+            SetLives();
+            Destroy(other.gameObject);
+
+        }
     }
 
     void SetScore()
     {
         scoreCount = scoreCount + 1;
         scoreText.text = "Score: " + scoreCount.ToString();
-        if (scoreCount >= 4)
+        if (scoreCount ==4)
         {
-            winText.text = "You Win!";
-            scoreText.text = "";
+            StartCoroutine(moveDelay(3f));
+            winText.text = "Level 1 Complete.";
+            Invoke("disableText", 3f);
+            rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+            Invoke("restorePlayer", 3.5f);
+
+        }
+        else if (scoreCount == 8 && lvl2 == true)
+        {
+            winDisplay();
+        }
+
+    }
+    
+    void SetLives()
+    {
+        livesCount = livesCount - 1;
+        livesText.text = "Lives: " + livesCount.ToString();
+        if (livesCount < 1)
+        {
+            lossDisplay();
         }
     }
+
+    void movePlayer()
+    {
+        playerLocation.position = new Vector2(39.0f,-2f);
+        lvl2 = true;
+        livesCount = 3;
+    }
+
+    void winDisplay()
+    {
+        winText.text = "You Win!";
+        scoreText.text = "";
+        livesText.text = "";
+        victorySound.Play();
+    }
+    void restorePlayer()
+    {
+        rb2d.constraints = RigidbodyConstraints2D.None;
+    }
+    void lossDisplay()
+    {
+        scoreText.text = "";
+        livesText.text = "";
+        winText.text = "You Lost!";
+        rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+    }
+     IEnumerator moveDelay(float time)
+    {
+         yield return new WaitForSeconds(time);
+         movePlayer();    
+    }
+    void disableText ()
+    {
+        winText.text = "";
+    }
+
+
+
 }
+
+
+
