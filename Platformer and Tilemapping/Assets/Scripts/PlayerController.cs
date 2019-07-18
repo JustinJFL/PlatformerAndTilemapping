@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,9 +10,16 @@ public class PlayerController : MonoBehaviour
 
     public float speed;
     public float jumpForce;
+    private float scoreCount;
+    public Text scoreText;
+    public Text winText;
+
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        scoreCount = 0;
+        scoreText.text = "Score: " + scoreCount.ToString();
+        winText.text = "";
     }
 
     void FixedUpdate()
@@ -37,6 +45,29 @@ public class PlayerController : MonoBehaviour
             {
                 rb2d.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
             }
+        }
+        
+
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Coin")
+        {
+            SetScore();
+            Destroy(other.gameObject);
+            
+        }    
+    }
+
+    void SetScore()
+    {
+        scoreCount = scoreCount + 1;
+        scoreText.text = "Score: " + scoreCount.ToString();
+        if (scoreCount >= 4)
+        {
+            winText.text = "You Win!";
+            scoreText.text = "";
         }
     }
 }
