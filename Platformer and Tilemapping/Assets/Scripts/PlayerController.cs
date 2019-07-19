@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
         livesText.text = "Lives: " + livesCount.ToString();
         winText.text = "";
         lvl2 = false;
-        
+
     }
 
     void FixedUpdate()
@@ -116,6 +116,8 @@ public class PlayerController : MonoBehaviour
         scoreText.text = "Score: " + scoreCount.ToString();
         if (scoreCount ==4)
         {
+            livesCount = 3;
+            livesText.text = "Lives: " + livesCount.ToString();
             StartCoroutine(moveDelay(3f));
             winText.text = "Level 1 Complete.";
             Invoke("disableText", 3f);
@@ -157,6 +159,8 @@ public class PlayerController : MonoBehaviour
     void restorePlayer()
     {
         rb2d.constraints = RigidbodyConstraints2D.None;
+        rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
+        livesCount = 3;
     }
     void lossDisplay()
     {
