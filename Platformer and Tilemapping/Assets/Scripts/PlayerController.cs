@@ -23,7 +23,8 @@ public class PlayerController : MonoBehaviour
 
     private bool lvl2;
     private bool facingRight = true;
-
+    private bool isJumping = false;
+    private bool isWalking = false;
     public Animator playerAnim;
 
     public AudioSource victorySound;
@@ -37,6 +38,7 @@ public class PlayerController : MonoBehaviour
         livesText.text = "Lives: " + livesCount.ToString();
         winText.text = "";
         lvl2 = false;
+        
 
     }
 
@@ -56,29 +58,42 @@ public class PlayerController : MonoBehaviour
         {
             Flip();
         }
-        else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow))
+        else if (rb2d.velocity.y != 0)
         {
-            playerAnim.SetInteger("Walking",1);
+            playerAnim.SetBool("Jumping",true);
+            playerAnim.SetBool("Walking",false);
+            isWalking = true;
+        }  
 
-            if(Input.GetKey(KeyCode.UpArrow))
-            {
-                playerAnim.SetInteger("Jumping",1);
-            }
-        }        
-        else if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow))
+        else if (rb2d.velocity.y == 0)
         {
-            playerAnim.SetInteger("Idle",1);
+            playerAnim.SetBool("Jumping",false);
+            playerAnim.SetBool("Walking",false);
+
         }
-
-
+    
     }
     void Update()
     {
+        Debug.Log(rb2d.velocity.y);
         if (Input.GetKey("escape"))
         {
          Application.Quit();
         }
+        else if (rb2d.velocity == Vector2.zero)
+        {
+            playerAnim.SetBool("Walking",false);
+        }
+        else if (rb2d.velocity.x > 0 || rb2d.velocity.x < 0)
+        {
+            playerAnim.SetBool("Walking",true);
 
+        }
+        else if (rb2d.velocity.x > -.2 || rb2d.velocity.x < .2)
+        {
+            playerAnim.SetBool("Walking",false);
+
+        }
     }
 
     void OnCollisionStay2D(Collision2D Collision)
@@ -88,8 +103,8 @@ public class PlayerController : MonoBehaviour
             if(Input.GetKey(KeyCode.UpArrow))
             {
                 rb2d.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
-                playerAnim.SetInteger("Jumping",1);
             }
+            
         }
 
     }
@@ -155,6 +170,8 @@ public class PlayerController : MonoBehaviour
         scoreText.text = "";
         livesText.text = "";
         victorySound.Play();
+        rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+        Time.timeScale = 0;
     }
     void restorePlayer()
     {
@@ -168,6 +185,7 @@ public class PlayerController : MonoBehaviour
         livesText.text = "";
         winText.text = "You Lost!";
         rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+        Time.timeScale = 0;
     }
      IEnumerator moveDelay(float time)
     {

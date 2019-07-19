@@ -12275,7 +12275,7 @@ MonoBehaviour:
   winText: {fileID: 565552782}
   livesText: {fileID: 1990963425}
   playerLocation: {fileID: 1510500172}
-  playerAnim: {fileID: 0}
+  playerAnim: {fileID: 1510500177}
   victorySound: {fileID: 1510500175}
 --- !u!82 &1510500175
 AudioSource:

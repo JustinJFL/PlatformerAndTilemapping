@@ -16,7 +16,6 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         transform.position = Vector2.Lerp(startPos, endPos, Mathf.PingPong(Time.time * enemySpeed, 1.0f));
-
     }
 
 }
