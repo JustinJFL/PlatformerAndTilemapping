@@ -369,7 +369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1cb7bec670c9e44b8d2a4ec34c7d987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySpeed: 0.3
+  enemySpeed: 0.2
   startPos: {x: 34, y: 4.7}
   endPos: {x: 44, y: 4.7}
 --- !u!95 &148342952
@@ -1128,7 +1128,6 @@ GameObject:
   m_Component:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
-  - component: {fileID: 519420029}
   - component: {fileID: 519420030}
   - component: {fileID: 519420033}
   m_Layer: 0
@@ -1138,14 +1137,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &519420029
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
 --- !u!82 &519420030
 AudioSource:
   m_ObjectHideFlags: 0
@@ -10995,7 +10986,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1cb7bec670c9e44b8d2a4ec34c7d987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySpeed: 0.35
+  enemySpeed: 0.2
   startPos: {x: 37.5, y: -2.5}
   endPos: {x: 34, y: -2.5}
 --- !u!95 &935993982
@@ -11400,7 +11391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1cb7bec670c9e44b8d2a4ec34c7d987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySpeed: 0.6
+  enemySpeed: 0.2
   startPos: {x: 46, y: 1.5}
   endPos: {x: 42.5, y: 1.5}
 --- !u!95 &1262249294
@@ -11605,7 +11596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1cb7bec670c9e44b8d2a4ec34c7d987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySpeed: 0.8
+  enemySpeed: 0.2
   startPos: {x: 40.5, y: 0.55}
   endPos: {x: 36, y: 0.55}
 --- !u!95 &1296355916
@@ -11862,7 +11853,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1cb7bec670c9e44b8d2a4ec34c7d987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySpeed: 0.5
+  enemySpeed: 0.2
   startPos: {x: 5.22, y: 3.8}
   endPos: {x: -0.56, y: 3.8}
 --- !u!95 &1332243150
@@ -12145,10 +12136,11 @@ GameObject:
   - component: {fileID: 1510500172}
   - component: {fileID: 1510500171}
   - component: {fileID: 1510500170}
-  - component: {fileID: 1510500173}
   - component: {fileID: 1510500174}
   - component: {fileID: 1510500176}
   - component: {fileID: 1510500175}
+  - component: {fileID: 1510500177}
+  - component: {fileID: 1510500173}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -12214,8 +12206,8 @@ SpriteRenderer:
   m_SortingLayerID: 112568567
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d19a9d56529c60e4c8af0751b411bcbd, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 9e5d870871d8a9644be9ddc149486cfa, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -12234,7 +12226,7 @@ Transform:
   m_GameObject: {fileID: 1510500169}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -12252,18 +12244,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.0072562695}
+  m_Offset: {x: -0.2456863, y: -0.09516287}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 5.42, y: 4.74}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.0145125}
+  m_Size: {x: 2.2796202, y: 4.192812}
   m_EdgeRadius: 0
 --- !u!114 &1510500174
 MonoBehaviour:
@@ -12283,6 +12275,7 @@ MonoBehaviour:
   winText: {fileID: 565552782}
   livesText: {fileID: 1990963425}
   playerLocation: {fileID: 1510500172}
+  playerAnim: {fileID: 0}
   victorySound: {fileID: 1510500175}
 --- !u!82 &1510500175
 AudioSource:
@@ -12388,6 +12381,25 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1510500169}
   m_Enabled: 1
+--- !u!95 &1510500177
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1510500169}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6f4fa3b16918f484d900e9c76948fbd4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1616990705
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12799,7 +12811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1cb7bec670c9e44b8d2a4ec34c7d987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySpeed: 0.35
+  enemySpeed: 0.2
   startPos: {x: 5.85, y: 0.5}
   endPos: {x: -0.24, y: 0.5}
 --- !u!60 &1790485468
@@ -22225,7 +22237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1cb7bec670c9e44b8d2a4ec34c7d987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySpeed: 0.4
+  enemySpeed: 0.2
   startPos: {x: -5.65, y: 2.47}
   endPos: {x: -0.65, y: 2.47}
 --- !u!95 &1911235335
@@ -23067,7 +23079,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1cb7bec670c9e44b8d2a4ec34c7d987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySpeed: 0.5
+  enemySpeed: 0.2
   startPos: {x: -4.7, y: -2.33}
   endPos: {x: -1.86, y: -2.33}
 --- !u!95 &2013590321

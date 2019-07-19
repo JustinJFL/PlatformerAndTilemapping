@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Animations;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -18,26 +20,57 @@ public class PlayerController : MonoBehaviour
     public Text livesText;
 
     public Transform playerLocation;
+
     private bool lvl2;
+    private bool facingRight = true;
+
+    public Animator playerAnim;
 
     public AudioSource victorySound;
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        playerAnim = GetComponent<Animator>();
         scoreCount = 0;
         livesCount = 3;
         scoreText.text = "Score: " + scoreCount.ToString();
         livesText.text = "Lives: " + livesCount.ToString();
         winText.text = "";
         lvl2 = false;
+        
     }
 
     void FixedUpdate()
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
+
         Vector2 movement = new Vector2(moveHorizontal,0);
 
         rb2d.AddForce(movement * speed); 
+
+        if (facingRight == false && moveHorizontal > 0)
+        {
+            Flip();
+        }
+        else if (facingRight == true && moveHorizontal < 0)
+        {
+            Flip();
+        }
+        else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow))
+        {
+            playerAnim.SetInteger("Walking",1);
+
+            if(Input.GetKey(KeyCode.UpArrow))
+            {
+                playerAnim.SetInteger("Jumping",1);
+            }
+        }        
+        else if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow))
+        {
+            playerAnim.SetInteger("Idle",1);
+        }
+
+
     }
     void Update()
     {
@@ -52,12 +85,12 @@ public class PlayerController : MonoBehaviour
     {
         if(Collision.collider.tag == "Ground")
         {
-            if(Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
+            if(Input.GetKey(KeyCode.UpArrow))
             {
                 rb2d.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
+                playerAnim.SetInteger("Jumping",1);
             }
         }
-        
 
     }
 
@@ -142,7 +175,13 @@ public class PlayerController : MonoBehaviour
         winText.text = "";
     }
 
-
+    void Flip()
+    {
+        facingRight = !facingRight;
+        Vector2 Scaler = transform.localScale;
+        Scaler.x = Scaler.x * -1;
+        transform.localScale = Scaler;
+}
 
 }
 
