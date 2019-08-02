@@ -7,6 +7,10 @@ TagManager:
   - Ground
   - Coin
   - Enemy
+  - Lava
+  - Positional
+  - Lava2
+  - PowerUp
   layers:
   - Default
   - TransparentFX
@@ -55,4 +59,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 112568567
+    locked: 0
+  - name: Lava
+    uniqueID: 4033616829
     locked: 0
