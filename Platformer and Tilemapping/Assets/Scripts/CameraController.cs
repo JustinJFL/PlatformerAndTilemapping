@@ -13,6 +13,8 @@ public Camera thisCam;
         //Screen.SetResolution(1600,900,false);
         thisCam.orthographic = true;
         offset = transform.position - player.transform.position;
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
     }
 
     // Update is called once per frame

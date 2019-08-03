@@ -99,23 +99,12 @@ public class PlayerController : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.R) && gameOver == true)
         {
-            if(lvl2==true)
+            /*if(lvl2==true)
             {
                  SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName("Level 2"));
             }
-
-            scoreCount = 0;
-            livesCount = 3;
-            scoreText.text = "Score: " + scoreCount.ToString();
-            livesText.text = "Lives: " + livesCount.ToString();
-            winText.text = "";
-            instructionsText.text = "";
-            lvl2 = false;
-            gameOver = false;
-            restorePlayer();
-            Debug.Log("Restart successful");
-            SceneManager.LoadScene("Level 1", LoadSceneMode.Single);
-            SceneManager.SetActiveScene(SceneManager.GetSceneByName("Level 1"));
+            */
+            restartGame();
         }
         else if (rb2d.velocity == Vector2.zero)
         {
@@ -140,6 +129,22 @@ public class PlayerController : MonoBehaviour
         }*/
 
     
+    }
+
+    public void restartGame()
+    {
+        scoreCount = 0;
+        livesCount = 3;
+        scoreText.text = "Score: " + scoreCount.ToString();
+        livesText.text = "Lives: " + livesCount.ToString();
+        winText.text = "";
+        instructionsText.text = "";
+        lvl2 = false;
+        gameOver = false;
+        restorePlayer();
+        Debug.Log("Restart successful");
+        SceneManager.LoadScene("Level 1", LoadSceneMode.Single);
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("Level 1"));
     }
 
     void OnCollisionStay2D(Collision2D Collision)
@@ -273,7 +278,7 @@ public class PlayerController : MonoBehaviour
         rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
         livesCount = 3;
     }
-    void lossDisplay()
+    public void lossDisplay()
     {
         scoreText.text = "";
         livesText.text = "";

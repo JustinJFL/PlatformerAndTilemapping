@@ -10,12 +10,13 @@ public class LavaController : MonoBehaviour
     
     public float lavaSpeed;
     public Text instructionsText;
+    public PlayerController pcScript;
     void Start()
     {
         GameObject playerControllerObject = GameObject.FindWithTag("Player");
-        instructionsText.text ="Collect all the coins before the lava gets you!";
+        instructionsText.text ="Collect all the coins before the lava gets you! \n Avoid the birds!";
         StartCoroutine(instructions(3f));
-        instructionsText.text = "Collect all the coins before the lava gets you!";
+        instructionsText.text = "Collect all the coins before the lava gets you! \n Avoid the birds!";
         //StartCoroutine(instructions(3f));
     }
 
@@ -40,6 +41,11 @@ public class LavaController : MonoBehaviour
         if(other.gameObject.tag == "Player")
         {
             lavaSpeed = 0;
+            pcScript.lossDisplay();
+            if(Input.GetKeyDown(KeyCode.R))
+            {
+                pcScript.restartGame();
+            }
         }
     }
     IEnumerator instructions(float time)
